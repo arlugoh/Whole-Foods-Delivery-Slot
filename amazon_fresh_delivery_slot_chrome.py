@@ -8,7 +8,6 @@ import os
 import traceback
 import logging
 import pr_settings
-from datetime import datetime
 
 logging.basicConfig(format='%(asctime)s %(levelname)s : %(message)s', level=logging.INFO)
 
@@ -25,11 +24,13 @@ def getWFSlot(productUrl):
    time.sleep(60)
    no_open_slots = True
    heart_beat_freq_in_secs = 600
-   starting=datetime.now()
+   starting=time.time()
    while no_open_slots:
-      if datetime.now().microsecond>starting.microsecond + 600*1000:
+      elapsed = time.time()-starting
+      logging.debug('elapsed sec : ' + str(elapsed))
+      if elapsed > 600:
         os.system('say "Program still alive"')
-        starting=datetime.now()
+        starting=time.time()
       
       driver.refresh()
       logging.info("refreshed")
