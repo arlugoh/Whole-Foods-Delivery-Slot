@@ -75,7 +75,7 @@ def alert(open_slots):
 
 
 def saveToFile(folder, text):
-    f = open(folder + next(tempfile._get_candidate_names()), "a")
+    f = open(folder + next(tempfile._get_candidate_names())+'.html', "a")
     f.write(text)
     f.close()
 
@@ -163,6 +163,9 @@ def getWFSlot(productUrl):
         #     traceback.print_exc(file=sys.stdout)
 
 
+def main():
+    getWFSlot('https://www.amazon.com/gp/buy/shipoptionselect/handlers/display.html?hasWorkingJavascript=1')
 
-# send_gmail()
-getWFSlot('https://www.amazon.com/gp/buy/shipoptionselect/handlers/display.html?hasWorkingJavascript=1')
+
+if __name__ == '__main__':
+    main()
